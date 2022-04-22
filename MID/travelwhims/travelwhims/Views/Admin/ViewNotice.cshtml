@@ -1,0 +1,77 @@
+﻿@model IEnumerable<travelwhims.Models.TWdatabase.Notice>
+
+@{
+    ViewBag.Title = "ViewNotice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong>@TempData["AlertMessage"]
+
+    </div>
+}
+<br />
+
+<h3 class="text-center">ViewNotice</h3>
+
+<p>
+    <a href="/Admin/CreateNotice" class="btn btn-danger text-light create-button">Create New Notice</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Notice
+        </th>
+        <th>
+            User Type
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Action Status
+        </th>
+        <th>
+            Date/Time
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.notice1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.user_type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.status)
+    </td>
+    <td>
+        <form method="post" enctype="multipart/form-data" action="/Admin/ViewNotice">
+            <input type="hidden" name="id" value="@Html.DisplayFor(modelItem => item.id)" readonly>
+            <select name="status" id="status">
+                <option selected disabled>--Select--</option>
+                <option value="accepted">Accepted</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <input class="form-control btn btn-info" type="submit" name="Status" value="Update" />
+        </form>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.datet)
+    </td>
+    <td class="p-4">
+        @Html.ActionLink("Edit", "EditNotice", new { id = item.id }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Delete", "DeleteNotice", new { id = item.id }, new { @class = "btn btn-success" })
+    </td>
+</tr>
+    }
+
+</table>

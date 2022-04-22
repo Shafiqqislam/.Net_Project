@@ -1,0 +1,54 @@
+﻿@model IEnumerable<travelwhims.Models.TWdatabase.User>
+
+@{
+    ViewBag.Title = "ViewUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="text-center">ViewUser</h3>
+<div class="header-container">
+    <form action="/Admin/ViewUser" method="post" class="search-box d-flex align-content-end">
+        <input class="form-control" type="text" name="searchname" value="" placeholder="Search Users" />
+        <input class="form-control btn btn-success" type="submit" value="Search" />
+    </form>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th>
+            User Password
+        </th>
+        <th>
+            User Type
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_type)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", new { id = item.id }, new { @class = "btn btn-success" }) |
+               |
+                @Html.ActionLink("Delete", "DeleteUser", new { id = item.id }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+
+</table>

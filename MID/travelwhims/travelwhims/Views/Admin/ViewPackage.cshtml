@@ -1,0 +1,81 @@
+﻿@model IEnumerable<travelwhims.Models.TWdatabase.Package>
+
+@{
+    ViewBag.Title = "ViewPackage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="text-center">ViewPackage</h3>
+
+<table class="table">
+    <tr>
+        <th>
+              Package Title
+        </th>
+        <th>
+              Package Bio
+        </th>
+        <th>
+              Package Destinations
+        </th>
+        <th>
+              Package Price
+        </th>
+        <th>
+              Package Tour_Date
+        </th>
+        <th>
+              Package Return_Date
+        </th>
+        <th>
+              Package Class
+        </th>
+        <th>
+              Package Category
+        </th>
+        <th>
+              Package Status
+        </th>
+        <th>
+             TravelAgency Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_bio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_destinations)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_tourdate)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_returndate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_class)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pac_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelAgency.ta_name)
+      
+    </tr>
+}
+
+</table>

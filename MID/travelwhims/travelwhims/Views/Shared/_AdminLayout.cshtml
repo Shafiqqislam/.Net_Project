@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        <title>@ViewBag.Title</title>
+    </head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/admin-nav.css" />
+    <link rel="stylesheet" href="~/Content/admin.css" />
+
+    <title>Dashborad</title>
+    <link rel="icon" href="./images/hms.svg">
+</head>
+
+<body>
+    <header class="header-area">
+        <div class="title">
+            <h1>travelwhims</h1>
+        </div>
+        <div class="navigation">
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <a href=""><?php echo $_SESSION['username'];?></a>
+                    <li><a href="Logout">Logout</a></li>
+                    <ul>
+                    </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <?php $uid=$_SESSION['id']; ?>
+    <div class="admin-wrapper">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <ul>
+                <li>  <a href="/Admin/Home" class="btn btn-success">Home</a></li>
+                <li>   <a href="/Admin/CreateManager" class="btn btn-danger">Add Manager</a></li>
+                <li> <a href="/Admin/ViewManager" class="btn btn-success">View Manager</a></li>
+                <li>  <a href="/Admin/ViewUser" class="btn btn-danger">View User</a></li>
+                <li><a href="/Admin/ViewPackage" class="btn btn-success">View Package</a></li>
+                <li> <a href="/Admin/ViewNotice" class="btn btn-danger">View Notice</a></li>
+                <li> <a href="/Admin/CreateNotice" class="btn btn-success">Add Notice</a></li>
+                <li> <a href="/Admin/ViewRating" class="btn btn-success">View Rating</a></li>
+                <li> <a href="/Admin/Report" class="btn btn-success">Report</a></li>
+            </ul>
+        </div>
+        <div class="admin-content">
+            <div class="content">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p class="text-center">&copy;@DateTime.Now.Year - travelwhims</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

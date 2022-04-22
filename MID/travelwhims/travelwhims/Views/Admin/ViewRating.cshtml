@@ -1,0 +1,44 @@
+﻿@model IEnumerable<travelwhims.Models.TWdatabase.Rating>
+
+@{
+    ViewBag.Title = "ViewRating";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ViewRating</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.r_rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_review)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cuspacta_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_review)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuspacta_id)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "DeleteRating", new { id = item.id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

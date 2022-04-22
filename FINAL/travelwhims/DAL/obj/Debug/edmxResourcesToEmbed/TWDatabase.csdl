@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TWDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ad_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ad_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Blogcomment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blog_fk" Type="Int32" Nullable="false" />
+    <Property Name="blgcom_uid_fk" Type="Int32" Nullable="false" />
+    <Property Name="blgcom_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="blgcom_datetime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_Blogcomment_Blogs" FromRole="Blogcomment" ToRole="Blogs" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Blogcomment_Users" FromRole="Blogcomment" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blg_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="blg_des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="blg_img1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blg_img2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blg_img3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blg_img4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blg_img5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="blg_user_fk" Type="Int32" Nullable="false" />
+    <Property Name="blg_datetime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="blg_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Blogcomments" Relationship="Self.FK_Blogcomment_Blogs" FromRole="Blogs" ToRole="Blogcomment" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Blogs_Users" FromRole="Blogs" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CustomerPackage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pac_id" Type="Int32" Nullable="false" />
+    <Property Name="cus_id" Type="Int32" Nullable="false" />
+    <Property Name="ta_id" Type="Int32" Nullable="false" />
+    <Property Name="pay_discount" Type="Int32" />
+    <Property Name="pay_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerPackages_Customers" FromRole="CustomerPackages" ToRole="Customers" />
+    <NavigationProperty Name="Package" Relationship="Self.FK_CustomerPackages_Packages" FromRole="CustomerPackages" ToRole="Packages" />
+    <NavigationProperty Name="TravelAgency" Relationship="Self.FK_CustomerPackages_TravelAgencies" FromRole="CustomerPackages" ToRole="TravelAgencies" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_CustomerPackages" FromRole="CustomerPackages" ToRole="Payments" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="c_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="c_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="c_phone" Type="Int32" Nullable="false" />
+    <Property Name="c_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="c_dp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="c_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerPackages" Relationship="Self.FK_CustomerPackages_Customers" FromRole="Customers" ToRole="CustomerPackages" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="m_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="m_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="m_dp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="m_phone" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="notice1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datet" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Package">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pac_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pac_bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pac_destinations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pac_price" Type="Int32" Nullable="false" />
+    <Property Name="pac_tourdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pac_prerequisite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pac_thumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="pac_returndate" Type="DateTime" Precision="0" />
+    <Property Name="pac_class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pac_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pac_ta_fk" Type="Int32" Nullable="false" />
+    <Property Name="pac_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerPackages" Relationship="Self.FK_CustomerPackages_Packages" FromRole="Packages" ToRole="CustomerPackages" />
+    <NavigationProperty Name="TravelAgency" Relationship="Self.FK_Packages_TravelAgencies" FromRole="Packages" ToRole="TravelAgencies" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cuspac_id_fk" Type="Int32" Nullable="false" />
+    <Property Name="pay_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pay_amount" Type="Int32" Nullable="false" />
+    <Property Name="pay_mfs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pay_phone" Type="Int32" Nullable="false" />
+    <Property Name="pay_trxid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pay_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerPackage" Relationship="Self.FK_Payments_CustomerPackages" FromRole="Payments" ToRole="CustomerPackages" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="cuspacta_id" Type="Int32" Nullable="false" />
+    <Property Name="r_review" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="r_rating" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TravelAgency">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ta_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ta_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ta_rating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ta_bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ta_mail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ta_phone" Type="Int32" Nullable="false" />
+    <Property Name="ta_dp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ta_officeaddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerPackages" Relationship="Self.FK_CustomerPackages_TravelAgencies" FromRole="TravelAgencies" ToRole="CustomerPackages" />
+    <NavigationProperty Name="Packages" Relationship="Self.FK_Packages_TravelAgencies" FromRole="TravelAgencies" ToRole="Packages" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Blogcomments" Relationship="Self.FK_Blogcomment_Users" FromRole="Users" ToRole="Blogcomment" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Users" FromRole="Users" ToRole="Blogs" />
+  </EntityType>
+  <Association Name="FK_Blogcomment_Blogs">
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="1" />
+    <End Role="Blogcomment" Type="Self.Blogcomment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blogs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Blogcomment">
+        <PropertyRef Name="blog_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogcomment_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Blogcomment" Type="Self.Blogcomment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Blogcomment">
+        <PropertyRef Name="blgcom_uid_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="blg_user_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerPackages_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerPackages" Type="Self.CustomerPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CustomerPackages">
+        <PropertyRef Name="cus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerPackages_Packages">
+    <End Role="Packages" Type="Self.Package" Multiplicity="1" />
+    <End Role="CustomerPackages" Type="Self.CustomerPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Packages">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CustomerPackages">
+        <PropertyRef Name="pac_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerPackages_TravelAgencies">
+    <End Role="TravelAgencies" Type="Self.TravelAgency" Multiplicity="1" />
+    <End Role="CustomerPackages" Type="Self.CustomerPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TravelAgencies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CustomerPackages">
+        <PropertyRef Name="ta_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_CustomerPackages">
+    <End Role="CustomerPackages" Type="Self.CustomerPackage" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerPackages">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="cuspac_id_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Packages_TravelAgencies">
+    <End Role="TravelAgencies" Type="Self.TravelAgency" Multiplicity="1" />
+    <End Role="Packages" Type="Self.Package" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TravelAgencies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Packages">
+        <PropertyRef Name="pac_ta_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TWDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Blogcomments" EntityType="Self.Blogcomment" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="CustomerPackages" EntityType="Self.CustomerPackage" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Notices" EntityType="Self.Notice" />
+    <EntitySet Name="Packages" EntityType="Self.Package" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Ratings" EntityType="Self.Rating" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TravelAgencies" EntityType="Self.TravelAgency" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Blogcomment_Blogs" Association="Self.FK_Blogcomment_Blogs">
+      <End Role="Blogs" EntitySet="Blogs" />
+      <End Role="Blogcomment" EntitySet="Blogcomments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogcomment_Users" Association="Self.FK_Blogcomment_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Blogcomment" EntitySet="Blogcomments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Users" Association="Self.FK_Blogs_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerPackages_Customers" Association="Self.FK_CustomerPackages_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerPackages" EntitySet="CustomerPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerPackages_Packages" Association="Self.FK_CustomerPackages_Packages">
+      <End Role="Packages" EntitySet="Packages" />
+      <End Role="CustomerPackages" EntitySet="CustomerPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerPackages_TravelAgencies" Association="Self.FK_CustomerPackages_TravelAgencies">
+      <End Role="TravelAgencies" EntitySet="TravelAgencies" />
+      <End Role="CustomerPackages" EntitySet="CustomerPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_CustomerPackages" Association="Self.FK_Payments_CustomerPackages">
+      <End Role="CustomerPackages" EntitySet="CustomerPackages" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Packages_TravelAgencies" Association="Self.FK_Packages_TravelAgencies">
+      <End Role="TravelAgencies" EntitySet="TravelAgencies" />
+      <End Role="Packages" EntitySet="Packages" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

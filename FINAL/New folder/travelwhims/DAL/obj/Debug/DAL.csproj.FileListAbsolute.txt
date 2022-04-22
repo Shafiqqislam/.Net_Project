@@ -1,0 +1,20 @@
+C:\.Net\travelwhims\DAL\bin\Debug\DAL.dll.config
+C:\.Net\travelwhims\DAL\bin\Debug\DAL.dll
+C:\.Net\travelwhims\DAL\bin\Debug\DAL.pdb
+C:\.Net\travelwhims\DAL\bin\Debug\EntityFramework.dll
+C:\.Net\travelwhims\DAL\bin\Debug\EntityFramework.xml
+C:\.Net\travelwhims\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\.Net\travelwhims\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\.Net\travelwhims\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\.Net\travelwhims\DAL\obj\Debug\DAL.dll
+C:\.Net\travelwhims\DAL\obj\Debug\DAL.pdb
+C:\.Net\New folder\travelwhims\DAL\bin\Debug\DAL.dll.config
+C:\.Net\New folder\travelwhims\DAL\bin\Debug\DAL.dll
+C:\.Net\New folder\travelwhims\DAL\bin\Debug\DAL.pdb
+C:\.Net\New folder\travelwhims\DAL\bin\Debug\EntityFramework.dll
+C:\.Net\New folder\travelwhims\DAL\bin\Debug\EntityFramework.xml
+C:\.Net\New folder\travelwhims\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\.Net\New folder\travelwhims\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\.Net\New folder\travelwhims\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\.Net\New folder\travelwhims\DAL\obj\Debug\DAL.dll
+C:\.Net\New folder\travelwhims\DAL\obj\Debug\DAL.pdb
